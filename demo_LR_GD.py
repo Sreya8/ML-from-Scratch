@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 
-X, y = datasets.fetch_california_housing(return_X_y=True)
+X, y = datasets.load_diabetes(return_X_y=True)
 
 if np.any(np.isnan(X)) or np.any(np.isnan(y)):
     raise ValueError("Data contains NaN values")
@@ -17,7 +17,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-model = LinearRegression(lr=0.001, epochs = 10, method='batch')
+model = LinearRegression(lr=0.01, epochs = 100, method='batch')
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
